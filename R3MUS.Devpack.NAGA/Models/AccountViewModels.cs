@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using R3MUS.Devpack.Filters;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace R3MUS.Devpack.NAGA.Models
@@ -65,8 +66,12 @@ namespace R3MUS.Devpack.NAGA.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "User name (Your character name from Eve)")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Email Address")]
         [EmailAddress]
-        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
@@ -79,6 +84,15 @@ namespace R3MUS.Devpack.NAGA.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "API Key")]
+        [ApiKey]
+        public string ApiKey { get; set; }
+
+        [Display(Name = "Verification Code")]
+        [MinLength(64)]
+        [MaxLength(64)]
+        public string VerificationCode { get; set; }
     }
 
     public class ResetPasswordViewModel
